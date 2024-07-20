@@ -62,7 +62,7 @@ app.post('/submit', (req, res) => {
             from: TWILIO_SANDBOX_NUMBER, 
             to: TWILIO_RECIPIANT_NUMBER ,  
             body: messageBody,
-            // mediaUrl: `http://localhost:3000/uploads/${path.basename(newFilePath)}` 
+            mediaUrl: `https://data-send-via-whatsapp-using-api.onrender.com/uploads/${path.basename(newFilePath)}` 
         })
         .then(message => {
             console.log('Message sent:', message.sid);
