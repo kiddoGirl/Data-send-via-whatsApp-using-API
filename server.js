@@ -3,12 +3,16 @@ const formidable = require('formidable');
 const fs = require('fs');
 const path = require('path');
 const twilio = require('twilio');
-require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
-const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+const TWILIO_ACCOUNT_SID= ('AC6662525661f9c6d11927b90d22fac4ba');
+const TWILIO_AUTH_TOKEN= ('091eeea0fd02aedc267b2e6f40272f5d');
+const TWILIO_SANDBOX_NUMBER=('whatsapp:+14155238886');
+const TWILIO_RECIPIANT_NUMBER = ('whatsapp:+916383604561');
+
+const twilioClient = twilio(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN);
 
 app.use(express.static('public'));
 
@@ -55,8 +59,8 @@ app.post('/submit', (req, res) => {
         Phone: ${phone}`;
 
         twilioClient.messages.create({
-            from: process.env.TWILIO_SANDBOX_NUMBER, 
-            to: process.env.TWILIO_RECIPIANT_NUMBER ,  
+            from: TWILIO_SANDBOX_NUMBER, 
+            to: TWILIO_RECIPIANT_NUMBER ,  
             body: messageBody,
             // mediaUrl: `http://localhost:3000/uploads/${path.basename(newFilePath)}` 
         })
