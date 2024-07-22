@@ -8,7 +8,7 @@ const app = express();
 const PORT = 3000;
 
 const TWILIO_ACCOUNT_SID= ('AC6662525661f9c6d11927b90d22fac4ba');
-const TWILIO_AUTH_TOKEN= ('091eeea0fd02aedc267b2e6f40272f5d');
+const TWILIO_AUTH_TOKEN= ('10b2507d99bcc270cac1d10c460d0d6b');
 const TWILIO_SANDBOX_NUMBER=('whatsapp:+14155238886');
 const TWILIO_RECIPIANT_NUMBER = ('whatsapp:+916383604561');
 
