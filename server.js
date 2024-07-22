@@ -17,7 +17,7 @@ const twilioClient = twilio(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN);
 app.use(express.static('public'));
 
 
-const uploadDir = path.join(__dirname, 'uploads');
+const uploadDir = path.join(__dirname, '/public/uploads');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
 }
@@ -62,18 +62,23 @@ app.post('/submit', (req, res) => {
             from: TWILIO_SANDBOX_NUMBER, 
             to: TWILIO_RECIPIANT_NUMBER ,  
             body: messageBody,
-            mediaUrl: `https://data-send-via-whatsapp-using-api.onrender.com/uploads/${path.basename(newFilePath)}` 
+            mediaUrl :`https://data-send-via-whatsapp-using-api.onrender.com/uploads/${path.basename(newFilePath)}`,
         })
         .then(message => {
-            console.log('Message sent:', message.sid);
+            console.log('Message sent:', message);
             res.json({ message: 'Your message was sent successfully.' });
         })
         .catch(error => {
             console.error('Error sending message:', error);
             res.status(500).json({ message: 'Failed to send message' });
         });
+        
+        console.log('Base name:', path.basename(newFilePath));
+       
     });
 });
+
+
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
